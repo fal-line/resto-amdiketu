@@ -1,6 +1,8 @@
 import sqlite3
 from sqlite3 import Error
-db_file = ".\db\resto.db"
+import os
+THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+db_file = os.path.join(THIS_FOLDER, 'resto.db')
 
 def create_connection(db_file):
     """ create a database connection to the SQLite database
@@ -72,7 +74,10 @@ def create_transaction(conn, transaction):
     return cur.lastrowid
 
 def main():
-    database = r".\db\resto.db"
+    
+    THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+    db_file = os.path.join(THIS_FOLDER, 'resto.db')
+    database = db_file
 
     sql_create_crew_table = """ CREATE TABLE IF NOT EXISTS crew (
                                         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -102,31 +107,31 @@ def main():
         print('Running...')
         
         #--------- CLEAN or FIRST TIME RUN ---------------------------------------
-        # create_table(conn, sql_create_crew_table) # create crew table
-        # create_table(conn, sql_create_menu_table) # create menu table
-        # create_table(conn, sql_create_transaksi_table) # create transaksi table
+        create_table(conn, sql_create_crew_table) # create crew table
+        create_table(conn, sql_create_menu_table) # create menu table
+        create_table(conn, sql_create_transaksi_table) # create transaksi table
         
-        # crew = ('19221493','Muhammad Naufal Ihza Fadhilah');
-        # create_crew(conn, crew)
-        # crew = ('19220693','Aziz Ahadrianto');
-        # create_crew(conn, crew)
-        # crew = ('19220768','Alfa Rizy');
-        # create_crew(conn, crew)
-        # crew = ('19220682','M Bevi Arianda Anwar');
-        # create_crew(conn, crew)
-        # crew = ('19220458','M Zulfikar Noor');
-        # create_crew(conn, crew)
-        # crew = ('19220788','Dede saefulloh');
-        # create_crew(conn, crew)
+        crew = ('19221493','Muhammad Naufal Ihza Fadhilah');
+        create_crew(conn, crew)
+        crew = ('19220693','Aziz Ahadrianto');
+        create_crew(conn, crew)
+        crew = ('19220768','Alfa Rizy');
+        create_crew(conn, crew)
+        crew = ('19220682','M Bevi Arianda Anwar');
+        create_crew(conn, crew)
+        crew = ('19220458','M Zulfikar Noor');
+        create_crew(conn, crew)
+        crew = ('19220788','Dede saefulloh');
+        create_crew(conn, crew)
         
-        # menu = ('Ayam Goweng','12000')
-        # create_menu(conn, menu)
-        # menu = ('My Ayayam','10000')
-        # create_menu(conn, menu)
-        # menu = ('Ayam Byakar','18000')
-        # create_menu(conn, menu)
-        # menu = ('Soto My Bogay','16000')
-        # create_menu(conn, menu)
+        menu = ('Ayam Goweng','12000')
+        create_menu(conn, menu)
+        menu = ('My Ayayam','10000')
+        create_menu(conn, menu)
+        menu = ('Ayam Byakar','18000')
+        create_menu(conn, menu)
+        menu = ('Soto My Bogay','16000')
+        create_menu(conn, menu)
         
     else:
         print("Error! database connection is not established.")

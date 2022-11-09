@@ -1,7 +1,11 @@
 import sqlite3
+import os
+THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+db_file = os.path.join(THIS_FOLDER, 'resto.db')
+print(db_file)
 
 # Create a SQL connection to our SQLite database
-con = sqlite3.connect("./db/resto.db")
+con = sqlite3.connect(db_file)
 cur = con.cursor()
 
 crewRaw = []
@@ -42,6 +46,7 @@ class crewRaw():
             crewName.append(row)
         return crewName
 
+print(crewRaw.id(crewData))
 # key = '19220682'
 # for a in a:
 #     if key in a[1]:
