@@ -59,17 +59,17 @@ def create_menu(conn, menu):
     conn.commit()
     return cur.lastrowid
         
-def create_transaction(conn, transaction):
+def create_transaksi(conn, transaksi):
     """
-    Create a new transaction into the transactions table
+    Create a new transaksi into the transaksi table
     :param conn:
-    :param transaction:
-    :return: transaction id
+    :param transaksi:
+    :return: transaksi id
     """
-    sql = ''' INSERT INTO transaction(crewName,date,totalMenu,totalPrice)
+    sql = ''' INSERT INTO transaksi(crewName,date,totalMenu,totalPrice)
               VALUES(?,?,?,?) '''
     cur = conn.cursor()
-    cur.execute(sql, transaction)
+    cur.execute(sql, transaksi)
     conn.commit()
     return cur.lastrowid
 
@@ -132,6 +132,10 @@ def main():
         create_menu(conn, menu)
         menu = ('Soto My Bogay','16000')
         create_menu(conn, menu)
+        
+        transaksi = ('test','02 Agustus 2022',12000,28000)
+        create_transaksi(conn, transaksi)
+        
         
     else:
         print("Error! database connection is not established.")

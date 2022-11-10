@@ -2,70 +2,47 @@ import sqlite3
 import os
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
 db_file = os.path.join(THIS_FOLDER, 'resto.db')
-print(db_file)
+# print(db_file)
 
 # Create a SQL connection to our SQLite database
 con = sqlite3.connect(db_file)
 cur = con.cursor()
 
-crewRaw = []
+getData = []
 crewData = []
-crewID = []
-crewName =[]
+menuData = []
+strukData = []
+dic = {}
 
-
-# def crewRaw(cur,crewData,crewID,crewName):
-#     cur.execute('SELECT * FROM crew;')
-#     row = cur.fetchall()
-#     for row in row:
-#         crewData.append(row)
-#         crewID.append(row[1])
-#         crewName.append(row[2])
-#     return crewData, crewID, crewName
-
-# crewRaw(cur,crewData,crewID,crewName)
-class crewRaw():
-    def data(crewData):
+class getData():
+    def crew(crewData):
         cur.execute('SELECT * FROM crew;')
         row = cur.fetchall()
         for row in row:
-            crewData.append(row)
+            dic['id'] = row[0]
+            dic['nim'] = row[1]
+            dic['name'] = row[2]
+            crewData.append(dic.copy())
         return crewData
     
-    def id(crewID):
-        cur.execute('SELECT nim FROM crew;')
+    def menu(menuData):
+        cur.execute('SELECT * FROM menu;')
         row = cur.fetchall()
         for row in row:
-            crewID.append(row)
-        return crewID
+            dic['id'] = row[0]
+            dic['name'] = row[1]
+            dic['price'] = row[2]
+            menuData.append(dic.copy())
+        return menuData
     
-    def name(crewName):
-        cur.execute('SELECT name FROM crew;')
+    def struk(strukData):
+        cur.execute('SELECT * FROM transaksi;')
         row = cur.fetchall()
         for row in row:
-            crewName.append(row)
-        return crewName
-
-print(crewRaw.id(crewData))
-# key = '19220682'
-# for a in a:
-#     if key in a[1]:
-#         print('User tedaftar dengan NIM',a[1],'dan dengan nama',a[2])
-#         continue
-
-    
-
-
-# def menuList(cur,row,menuFull):
-#     cur.execute('SELECT * FROM menu;')
-#     row = cur.fetchall()
-#     for row in row:
-#         menuFull.append(row)
-#     return menuFull
-    
-
-
-    
-
-# Be sure to close the connection
-# con.close()
+            dic['id'] = row[0]
+            dic['crewName'] = row[1]
+            dic['date'] = row[2]
+            dic['totalMenu'] = row[3]
+            dic['totalPrice'] = row[4]
+            strukData.append(dic.copy())
+        return strukData
