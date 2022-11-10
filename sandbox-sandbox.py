@@ -1,12 +1,15 @@
 from query import getData
 # import os
-crewData =[]
+menuData =[]
 result = []
-inputID = ""
+inputID = ''
 dic = {}
-a = getData.crew(crewData)
+a = getData.menu(menuData)
+inputID = input('Masukan ID:')
 for i in a:
-    print(i)
+    # print(i)
+    if inputID in str(i['id']):
+        print(i['name'],i['price'])
     
     
 # os.system('cls||clear')
